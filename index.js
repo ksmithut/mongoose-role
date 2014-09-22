@@ -19,7 +19,7 @@ module.exports = function role(schema, options) {
   schema
     .path(options.rolePath, String)
     .path(options.rolePath)
-      .enum(options.roles)
+      .enum({values: options.roles})
       .required(true);
 
   // Expose the roles
