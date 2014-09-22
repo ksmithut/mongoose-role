@@ -12,7 +12,8 @@ module.exports = function role(schema, options) {
     rolePath: 'role',
     rolesStaticPath: 'roles',
     accessLevelsStaticPath: 'accessLevels',
-    hasAccessMethod: 'hasAccess'
+    hasAccessMethod: 'hasAccess',
+    roleHasAccessMethod: 'roleHasAccess'
   });
 
   // Set the role path
@@ -28,14 +29,20 @@ module.exports = function role(schema, options) {
 
   // Set the hasAccess method
   schema.method(options.hasAccessMethod, function (accessLevel) {
-    // if nothing is passed, then return true
+    var userRole = this.get(options.rolePath);
+    return roleHasAccess(userRole, accessLevel);
+  });
+
+  // Set the roleHasAccess method
+  schema.static(options.roleHasAccessMethod, roleHasAccess);
+
+  function roleHasAccess(role, accessLevel) {
     if (typeof accessLevel === 'undefined') { return true; }
     var validRoles = options.accessLevels[accessLevel];
     // if there is nothing in the access levels for the given accessLevel, then
     // the return false.
     if (!validRoles) { return false; }
-    var userRole   = this.get(options.rolePath);
-    return validRoles.indexOf(userRole) !== -1;
-  });
+    return validRoles.indexOf(role) !== -1;
+  }
 
 };
