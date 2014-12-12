@@ -25,12 +25,12 @@
   },
   "homepage": "https://github.com/ksmithut/mongoose-role",
   "devDependencies": {
-    "codeclimate-test-reporter": "0.0.3",
+    "codeclimate-test-reporter": "0.0.4",
     "expect.js": "^0.3.1",
-    "istanbul": "^0.3.2",
-    "mocha": "^1.21.4",
+    "istanbul": "^0.3.5",
+    "mocha": "^2.0.1",
     "mocha-lcov-reporter": "0.0.1",
-    "mongoose": "^3.8.16"
+    "mongoose": "^3.8.20"
   },
   "dependencies": {
     "lodash.defaults": "^2.4.1"
