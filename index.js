@@ -1,6 +1,6 @@
 'use strict';
 
-var defaults = require('lodash.defaults');
+var defaults = require('defaults');
 
 module.exports = function role(schema, options) {
 
