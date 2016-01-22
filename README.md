@@ -53,13 +53,15 @@ UserSchema.plugin(require('mongoose-role'), {
 
 var User = mongoose.model('User', UserSchema);
 
-var newUser = newUser({email: 'email@email.com', role: 'user'});
+var newUser = new User({email: 'email@email.com', role: 'user'});
 
 // The string passed in is an access level
 console.log(newUser.hasAccess('public')); // true
 console.log(newUser.hasAccess('anon')); // false
 console.log(newUser.hasAccess('user')); // true
 console.log(newUser.hasAccess('admin')); // false
+console.log(newUser.hasAccess([ 'public', 'user' ])); // true
+console.log(newUser.hasAccess([ 'public', 'anon' ])); // false (because the user isn't a part of 'anon' access level)
 ```
 
 It it required that you pass in options to the plugin. This way you can set up
