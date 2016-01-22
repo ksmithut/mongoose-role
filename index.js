@@ -1,12 +1,11 @@
 'use strict';
 
-var defaults = require('defaults');
+var assign = require('object-assign');
 
 module.exports = function role(schema, options) {
 
   // Set the default options
-  options = options || {};
-  defaults(options, {
+  options = assign({
     roles: [],
     accessLevels: {},
     rolePath: 'role',
@@ -14,7 +13,7 @@ module.exports = function role(schema, options) {
     accessLevelsStaticPath: 'accessLevels',
     hasAccessMethod: 'hasAccess',
     roleHasAccessMethod: 'roleHasAccess'
-  });
+  }, options);
 
   // Set the role path
   schema
@@ -28,7 +27,7 @@ module.exports = function role(schema, options) {
   schema.static(options.accessLevelsStaticPath, options.accessLevels);
 
   // Set the hasAccess method
-  schema.method(options.hasAccessMethod, function (accessLevels) {
+  schema.method(options.hasAccessMethod, function(accessLevels) {
     var userRole = this.get(options.rolePath);
     return roleHasAccess(userRole, accessLevels);
   });
@@ -39,12 +38,12 @@ module.exports = function role(schema, options) {
   function roleHasAccess(role, accessLevels) {
     if (typeof accessLevels === 'undefined') { return true; }
     accessLevels = [].concat(accessLevels);
-    var validLevels = accessLevels.map(function(level) {
+
+    // Goes through all access levels, and if any one of the access levels
+    // doesn't exist in the roles, return false
+    return !accessLevels.some(function(level) {
       var roles = options.accessLevels[level] || [];
-      return roles.indexOf(role) !== -1;
+      return roles.indexOf(role) === -1;
     });
-    // if at least one access level isn't defined or the role doesn't exists
-    // for every access level passed, it returns false;
-    return (validLevels.indexOf(false) !== -1) === false;
   }
 };
