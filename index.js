@@ -28,21 +28,23 @@ module.exports = function role(schema, options) {
   schema.static(options.accessLevelsStaticPath, options.accessLevels);
 
   // Set the hasAccess method
-  schema.method(options.hasAccessMethod, function (accessLevel) {
+  schema.method(options.hasAccessMethod, function (accessLevels) {
     var userRole = this.get(options.rolePath);
-    return roleHasAccess(userRole, accessLevel);
+    return roleHasAccess(userRole, accessLevels);
   });
 
   // Set the roleHasAccess method
   schema.static(options.roleHasAccessMethod, roleHasAccess);
 
-  function roleHasAccess(role, accessLevel) {
-    if (typeof accessLevel === 'undefined') { return true; }
-    var validRoles = options.accessLevels[accessLevel];
-    // if there is nothing in the access levels for the given accessLevel, then
-    // the return false.
-    if (!validRoles) { return false; }
-    return validRoles.indexOf(role) !== -1;
+  function roleHasAccess(role, accessLevels) {
+    if (typeof accessLevels === 'undefined') { return true; }
+    accessLevels = [].concat(accessLevels);
+    var validLevels = accessLevels.map(function(level) {
+      var roles = options.accessLevels[level] || [];
+      return roles.indexOf(role) !== -1;
+    });
+    // if at least one access level isn't defined or the role doesn't exists
+    // for every access level passed, it returns false;
+    return (validLevels.indexOf(false) !== -1) === false;
   }
-
 };
