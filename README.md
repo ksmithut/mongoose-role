@@ -1,8 +1,6 @@
 # mongoose-role
 
-[![io.js compatibility](https://img.shields.io/badge/io.js-compatible-brightgreen.svg?style=flat)](https://iojs.org/)
 [![NPM version](http://img.shields.io/npm/v/mongoose-role.svg?style=flat)](https://www.npmjs.org/package/mongoose-role)
-
 [![Dependency Status](http://img.shields.io/david/ksmithut/mongoose-role.svg?style=flat)](https://gemnasium.com/ksmithut/mongoose-role)
 [![Dependency Status](http://img.shields.io/david/dev/ksmithut/mongoose-role.svg?style=flat)](https://gemnasium.com/ksmithut/mongoose-role)
 [![Code Climate](http://img.shields.io/codeclimate/github/ksmithut/mongoose-role.svg?style=flat)](https://codeclimate.com/github/ksmithut/mongoose-role)
