@@ -38,7 +38,7 @@ describe('mongoose-role', function() {
     expect(model1.hasAccess('admin')).to.be.equal(false);
     expect(model2.hasAccess('user')).to.be.equal(true);
     expect(model2.hasAccess('admin')).to.be.equal(true);
-    expect(model1.hasAccess()).to.be.equal(true);
+    expect(model1.hasAccess()).to.be.equal(false);
     expect(model1.hasAccess('public')).to.be.equal(false);
   });
 
@@ -52,7 +52,7 @@ describe('mongoose-role', function() {
     expect(model1.hasAccess('admin')).to.be.equal(false);
     expect(model2.hasAccess('user')).to.be.equal(false);
     expect(model2.hasAccess('admin')).to.be.equal(false);
-    expect(model1.hasAccess()).to.be.equal(true);
+    expect(model1.hasAccess()).to.be.equal(false);
     expect(model1.hasAccess('public')).to.be.equal(false);
     model1.save(function (err, model) {
       expect(err.errors.role.kind).to.be.equal('enum');
@@ -74,7 +74,7 @@ describe('mongoose-role', function() {
     var model1 = new Test({name: 'test1', role: 'anon'});
     var model2 = new Test({name: 'test2', role: 'user'});
     var model3 = new Test({name: 'test3', role: 'admin'});
-    expect(model1.hasAccess()).to.be.equal(true);
+    expect(model1.hasAccess()).to.be.equal(false);
     expect(model1.hasAccess('public')).to.be.equal(true);
     expect(model1.hasAccess(['public', 'private'])).to.be.equal(false);
     expect(model2.hasAccess(['public', 'private'])).to.be.equal(true);

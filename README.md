@@ -106,8 +106,10 @@ make that optional and set a default value or something.
 
 It also adds a `hasAccess()` method to the model instances. It takes in a
 string of one of the accessLevels you defined in the options. If nothing is
-passed in, it will return true. If a string is passed that isn't one of the
-access levels, it will return false.
+passed in, it will return false. Note that in v1, it used to return true. It was
+decided that passing in nothing was usually a case of not handling some edge
+data cases, such as looking up valid roles for an endpoint from a database. If a
+string is passed that isn't one of the access levels, it will return false.
 
 ## Options
 
@@ -124,3 +126,10 @@ access levels, it will return false.
   given in the options. Default: `'accessLevels'`
 * `hasAccessMethod` (String) - The instance method name to be used to check a
   user's access level. Default: `'hasAccess'`
+
+# Changelog
+
+## 2.0.0
+
+`hasAccess()` when no access levels are passed in returns `false` instead of
+`true`.

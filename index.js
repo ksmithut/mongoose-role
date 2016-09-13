@@ -36,7 +36,7 @@ module.exports = function role(schema, options) {
   schema.static(options.roleHasAccessMethod, roleHasAccess);
 
   function roleHasAccess(role, accessLevels) {
-    if (typeof accessLevels === 'undefined') { return true; }
+    if (typeof accessLevels === 'undefined') { return false; }
     accessLevels = [].concat(accessLevels);
 
     // Goes through all access levels, and if any one of the access levels
