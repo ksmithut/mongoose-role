@@ -9,6 +9,12 @@
 
 A mongoose plugin to help manage user roles and user access levels.
 
+**Looking for another maintainer. I have been cleaning up my packages and no
+longer have the energy to maintain this package. If you are interested in
+taking over, please reach out. Otherwise, eventually I will have this package
+removed. I doubt this module is used enough for people to read this, but in
+case it is read, there's your notice.**
+
 There are many ways to handle user account access levels. This one has a very
 specific methodology.
 

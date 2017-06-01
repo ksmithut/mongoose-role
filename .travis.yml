@@ -1,18 +1,14 @@
+sudo: false
 language: node_js
 before_script:
   - sleep 15
 os:
   - linux
 node_js:
-  - "stable"
-  - "6"
-  - "5"
   - "4"
-  - "0.12"
-  - "0.11"
-  - "0.10"
+  - "6"
+  - "8"
+  - "stable"
 services:
   - mongodb
-env:
-  - secure: dJaLXHfgVIQQBI4rWmO844NxS514ZH+b5M8Dh3FH1AjqUwfaXUCMOl9A0voJlirZxmdnFJZ/lQ6q2HYFsm/HYkTJaEXgMaN2Nj58NVBqgA+D/+vKB1ItSUcvRfIgQtwrArHjWp8xdvfQ9mzCLBMlRRwBjeWRH9tK1RQG2iQriSE=
 after_success: npm run codeclimate
