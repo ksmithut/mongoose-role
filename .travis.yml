@@ -5,10 +5,10 @@ before_script:
 os:
   - linux
 node_js:
-  - "4"
-  - "6"
-  - "8"
-  - "stable"
+  - '6'
+  - '8'
+  - '10'
+  - 'stable'
 services:
   - mongodb
 after_success: npm run codeclimate

@@ -15,13 +15,18 @@ var testSchema = {
 
 describe('mongoose-role', function () {
   // Connect to the database
-  before(function (done) {
-    mongoose.connect('mongodb://127.0.0.1/mongoose-role-test', done)
+  before(function () {
+    return mongoose.connect(
+      'mongodb://127.0.0.1/mongoose-role-test',
+      { useNewUrlParser: true }
+    )
   })
 
   // Delete the database after testing
-  after(function (done) {
-    mongoose.connection.db.dropDatabase(done)
+  after(function () {
+    return mongoose.connection.db
+      .dropDatabase()
+      .then(() => mongoose.disconnect())
   })
 
   it('should give accurate user account lockage', function () {
