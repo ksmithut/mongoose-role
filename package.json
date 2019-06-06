@@ -1,6 +1,6 @@
 {
   "name": "mongoose-role",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Adds a role and access level functionality to a model",
   "main": "index.js",
   "scripts": {
